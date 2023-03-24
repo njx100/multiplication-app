@@ -1,1 +1,37 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: lightyellow;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .4);
+    border-radius: 8px;
+    
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 25px;
+    border: solid 4px green;
+}
+
+.answer::placeholder {
+    opacity: .3;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.btn {
+    margin: 5px;
+}
+
 
