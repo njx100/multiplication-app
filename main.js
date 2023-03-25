@@ -7,6 +7,7 @@ const plusMinusEl = document.getElementById("plus-minus");
 const resetBtnEl = document.getElementById("reset");
 const highestScoreEl = document.getElementById("highest-score");
 
+
 function randNumber() {
     let n = Math.floor(Math.random() * 9) + 1;
     return n;
@@ -40,7 +41,10 @@ function checkResult() {
         scoreEl.innerText--;
     }
     if (scoreEl.innerText < 0) scoreEl.innerText = 0;
+
     localStorage.setItem("score", scoreEl.innerText );
+    checkHighestScore();
+    highestScoreEl.innerText = localStorage.getItem("highest-score");
     firstNumberEl.innerText = randNumber();
     secondNumberEl.innerText = randNumber();
     answerEl.value = "";
@@ -51,10 +55,13 @@ function resetScore() {
     scoreEl.innerText = localStorage.getItem("score");
 };
 
-// function checkHighestScore() {
-//     let 
-//     if ()
-// }
+function checkHighestScore() {
+    
+    let highestScore = localStorage.getItem("highest-score");
+    if (highestScore < localStorage.getItem("score")) {
+        localStorage.setItem("highest-score", localStorage.getItem("score"));
+    }
+};
 
 scoreEl.innerText = localStorage.getItem("score");
 
