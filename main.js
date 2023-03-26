@@ -8,6 +8,14 @@ const resetBtnEl = document.getElementById("reset");
 const highestScoreEl = document.getElementById("highest-score");
 
 
+// function disableBtn() {
+//     while (answerEl.innerText === "") {
+//         btnEl.disabled = true;
+//     }
+//     btnEl.disabled = false;
+// }
+
+
 function randNumber() {
     let n = Math.floor(Math.random() * 9) + 1;
     return n;
@@ -33,21 +41,22 @@ function checkResult() {
         setTimeout(autoHidePlusMinus, 500);
         scoreEl.innerText++;
     } else {
-        
-        plusMinusEl.innerText = "-";
-        plusMinusEl.style.display = "inline-block";
-        plusMinusEl.style.color = "red";
-        setTimeout(autoHidePlusMinus, 500);
-        scoreEl.innerText--;
+        // plusMinusEl.innerText = "-";
+        // plusMinusEl.style.display = "inline-block";
+        // plusMinusEl.style.color = "red";
+        // setTimeout(autoHidePlusMinus, 500);
+        // scoreEl.innerText--;
+        resetScore();
     }
     if (scoreEl.innerText < 0) scoreEl.innerText = 0;
 
     localStorage.setItem("score", scoreEl.innerText );
     checkHighestScore();
-    highestScoreEl.innerText = localStorage.getItem("highest-score");
+    highestScoreEl.innerText = localStorage.getItem("highest");
     firstNumberEl.innerText = randNumber();
     secondNumberEl.innerText = randNumber();
     answerEl.value = "";
+    // disableBtn();
 };
 
 function resetScore() {
@@ -56,14 +65,21 @@ function resetScore() {
 };
 
 function checkHighestScore() {
-    
-    let highestScore = localStorage.getItem("highest-score");
-    if (highestScore < localStorage.getItem("score")) {
-        localStorage.setItem("highest-score", localStorage.getItem("score"));
+    let currentScore = localStorage.getItem("score");
+    let highestScore = localStorage.getItem("highest");
+    if (highestScore <= currentScore) {
+        localStorage.setItem("highest", currentScore);
+        
     }
 };
 
-scoreEl.innerText = localStorage.getItem("score");
 
+scoreEl.innerText = localStorage.getItem("score");
+highestScoreEl.innerText = localStorage.getItem("highest");
 resetBtnEl.addEventListener("click", resetScore);
 btnEl.addEventListener("click", checkResult);
+answerEl.addEventListener("keyup", (event) => {
+    if ( event.key === "Enter") {
+      checkResult();
+    }
+  });
